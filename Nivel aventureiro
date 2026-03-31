@@ -1,0 +1,119 @@
+#include <stdio.h>  
+#include <string.h>
+
+int main() { 
+    unsigned int populacao1, populacao2, num_pontos_turisticos1, num_pontos_turisticos2, ddd1 , ddd2;
+    float pib1, pib2, area1, area2, pib_per_capita1, pib_per_capita2, densidade_populacional, densidade_populacional2, densidade_demografica1, densidade_demografica2;
+    char Estado1[50], Estado2[50], Cidade1[50], Cidade2[50];
+    int opcao;
+    // Entrada de Dados
+    printf("--- Dados da Cidade 1 ---\n");
+    printf("Digite o 1 nome do Estado:\n");
+    fgets(Estado1, sizeof(Estado1), stdin);
+    Estado1[strcspn(Estado1, "\n")] = '\0';
+    printf("Digite o 1 nome da Cidade :\n");
+    fgets(Cidade1, sizeof(Cidade1), stdin);
+    Cidade1[strcspn(Cidade1, "\n")] = '\0';
+    printf("Digite o DDD:\n");
+    scanf("%u", &ddd1);
+    printf("Digite os pontos turisticos:\n");
+    scanf("%u", &num_pontos_turisticos1);
+    printf("Digite a populacao:\n");
+    scanf("%u", &populacao1);
+    printf("Digite a area:\n");
+    scanf("%f", &area1);
+    printf("Digite o PIB em reais:\n");
+    scanf("%f", &pib1);
+    pib_per_capita1 = pib1 / populacao1;
+    densidade_populacional = (float) populacao1 / area1;
+    printf("PIB per Capita é:  %.2f reais\n", pib_per_capita1);
+    printf("Densidade Populacional é: %.2f hab/km² \n", densidade_populacional);
+    
+
+    printf("\n--- Dados da Cidade 2 ---\n");
+    printf("Digite o 2 nome do Estado:\n");
+    getchar(); // Limpar o buffer do teclado
+    fgets(Estado2, sizeof(Estado2), stdin);
+    Estado2[strcspn(Estado2, "\n")] = '\0';
+    printf("Digite o 2 nome da Cidade :\n");
+    fgets(Cidade2, sizeof(Cidade2), stdin);
+    Cidade2[strcspn(Cidade2, "\n")] = '\0';
+    printf("Digite o DDD:\n");
+    scanf("%u", &ddd2);
+    printf("Digite os pontos turisticos:\n");
+    scanf("%u", &num_pontos_turisticos2);
+    printf("Digite a populacao:\n");
+    scanf("%u", &populacao2);
+    printf("Digite a area:\n");
+    scanf("%f", &area2);
+    printf("Digite o PIB em reais:\n");
+    scanf("%f", &pib2);
+    pib_per_capita2 = pib2 / populacao2;
+    densidade_populacional2 = (float) populacao2 / area2;
+    printf("PIB per Capita é:  %.2f reais\n", pib_per_capita2);
+    printf("Densidade Populacional é: %.2f hab/km² \n", densidade_populacional2);
+
+    //Menu
+    printf("\n--- Escolha o Atributo ---\n");
+    printf("1. População\n");
+    printf("2. Número de Pontos Turísticos\n");
+    printf("3. Área\n");
+    printf("4. PIB\n");
+    printf("5. Densidade Populacional\n");
+    scanf("%d", &opcao);
+
+    printf("\nComparação de Cartas:\n");
+
+    switch (opcao)
+    {
+    case 1:
+        if (populacao1 > populacao2) {
+            printf("Vencedor: %s\n", Cidade1);
+        } else if (populacao2 > populacao1) {
+            printf("Vencedor: %s\n", Cidade2);
+        } else {
+            printf("As cidades têm a mesma população.\n");
+        }
+        break;
+    case 2:
+        if (num_pontos_turisticos1 > num_pontos_turisticos2) {
+            printf("Cidade 1 tem mais pontos turísticos.\n");
+        } else if (num_pontos_turisticos2 > num_pontos_turisticos1) {
+            printf("Cidade 2 tem mais pontos turísticos.\n");
+        } else {
+            printf("As cidades têm o mesmo número de pontos turísticos.\n");
+        }
+        break;
+    case 3:
+        if (area1 > area2) {
+            printf("Cidade 1 tem mais área.\n");
+        } else if (area2 > area1) {
+            printf("Cidade 2 tem mais área.\n");
+        } else {
+            printf("As cidades têm a mesma área.\n");
+        }
+        break;
+    case 4:
+        if (pib1 > pib2) {
+            printf("Cidade 1 tem um PIB maior.\n");
+        } else if (pib2 > pib1) {
+            printf("Cidade 2 tem um PIB maior.\n");
+        } else {
+            printf("As cidades têm o mesmo PIB.\n");
+        }
+        break;
+    case 5:
+        if (densidade_populacional < densidade_populacional2) {
+            printf("Cidade 1 tem uma densidade populacional menor.\n");
+        } else if (densidade_populacional2 < densidade_populacional) {
+            printf("Cidade 2 tem uma densidade populacional maior.\n");
+        } else {
+            printf("As cidades têm a mesma densidade populacional.\n");
+        }
+        break;
+    default: 
+        printf("Opção inválida.\n");
+        break;
+    }
+    return 0;
+}
